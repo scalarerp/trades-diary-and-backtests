@@ -34,4 +34,5 @@ const InitialPage = () => {
         </Layout>
     )
 }
+
 export default InitialPage

@@ -1,3 +1,4 @@
+import { setCookie } from 'cookies-next'
 import { useQuery, QueryClient } from 'react-query'
 
 export const queryClient = new QueryClient({
@@ -10,6 +11,11 @@ export const queryClient = new QueryClient({
 
 export enum StoreKeys {
     user = 'user',
+    theme = 'theme',
+}
+
+const isCookie = (key: StoreKeys) => {
+    return [StoreKeys.user].includes(key)
 }
 
 export const useGlobalState = (key: StoreKeys, initialData: any) => [
@@ -17,5 +23,10 @@ export const useGlobalState = (key: StoreKeys, initialData: any) => [
         enabled: false,
         initialData,
     }).data,
-    (value: any) => queryClient.setQueryData(key, value),
+    (value: any) => {
+        if (isCookie(key)) {
+            setCookie(key, value)
+        }
+        queryClient.setQueryData(key, value)
+    },
 ]
