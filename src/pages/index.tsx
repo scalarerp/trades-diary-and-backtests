@@ -1,15 +1,18 @@
 import Layout from 'components/layout'
 import React from 'react'
-import { Text, Container, Title, SimpleGrid } from '@mantine/core'
+import { Text, Container, Title, SimpleGrid, Box } from '@mantine/core'
+import { UserEditor, UserView } from 'components/userTest'
 
 const InitialPage = () => {
     return (
         <Layout>
             <Container>
-                <Text>Text</Text>
+                <Box p={10}>
+                    <UserEditor />
+                </Box>
 
-                <Title order={2}>
-                    PharmLand is <span>not</span> just for pharmacists
+                <Title order={6} p={20}>
+                    <UserView />
                 </Title>
 
                 <Container size={660} p={100}>

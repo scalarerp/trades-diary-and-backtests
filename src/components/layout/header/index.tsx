@@ -7,9 +7,11 @@ import {
     Burger,
     Paper,
     Transition,
+    Box,
 } from '@mantine/core'
 import { useBooleanToggle } from '@mantine/hooks'
 import ThemeSwitcher from 'components/ui/themeSwitcher'
+import { UserView } from 'components/userTest'
 
 const HEADER_HEIGHT = 60
 
@@ -126,6 +128,16 @@ const links: ILinks[] = [
         link: '',
         label: '',
         component: <ThemeSwitcher />,
+    },
+    {
+        id: 'user',
+        link: '',
+        label: '',
+        component: (
+            <Box py={5} component="small">
+                <UserView />
+            </Box>
+        ),
     },
 ]
 

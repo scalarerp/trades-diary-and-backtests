@@ -10,6 +10,8 @@ import {
 } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import { Themes } from 'components/ui/uiInterfaces'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from 'store'
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     const { Component, pageProps } = props
@@ -47,7 +49,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                     withNormalizeCSS
                 >
                     <NotificationsProvider>
-                        <Component {...pageProps} />
+                        <QueryClientProvider client={queryClient}>
+                            <Component {...pageProps} />
+                        </QueryClientProvider>
                     </NotificationsProvider>
                 </MantineProvider>
             </ColorSchemeProvider>
