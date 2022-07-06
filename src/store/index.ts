@@ -15,6 +15,7 @@ export enum StoreKeys {
 }
 
 const isCookie = (key: StoreKeys) => {
+    console.log('isCookie', key)
     return [StoreKeys.user].includes(key)
 }
 
