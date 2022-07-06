@@ -26,7 +26,9 @@ export const useGlobalState = (key: StoreKeys, initialData: any) => [
     }).data,
     (value: any) => {
         if (isCookie(key)) {
-            setCookie(key, value)
+            setCookie(key, value, {
+                maxAge: 60 * 60 * 24 * 30,
+            })
         }
         queryClient.setQueryData(key, value)
     },
