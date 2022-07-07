@@ -19,17 +19,36 @@ const isCookie = (key: StoreKeys) => {
     return [StoreKeys.user].includes(key)
 }
 
-export const useGlobalState = (key: StoreKeys, initialData: any) => [
-    useQuery(key, () => initialData, {
+interface SetGlobalState<T> {
+    (newState: T): void
+}
+export function useGlobalState<T = undefined>(
+    key: StoreKeys
+): [T, SetGlobalState<T>]
+
+export function useGlobalState<T>(
+    key: StoreKeys,
+    initialState: T
+): [T, SetGlobalState<T>]
+
+export function useGlobalState<T>(
+    key: StoreKeys,
+    initialState?: T
+): [T | undefined, SetGlobalState<T>] {
+    const { data } = useQuery(key, () => initialState, {
+        initialData: initialState,
+        // staleTime: Infinity,
         enabled: false,
-        initialData,
-    }).data,
-    (value: any) => {
+    })
+
+    const setData = (newState: T) => {
         if (isCookie(key)) {
-            setCookie(key, value, {
+            setCookie(key, newState, {
                 maxAge: 60 * 60 * 24 * 30,
             })
         }
-        queryClient.setQueryData(key, value)
-    },
-]
+        queryClient.setQueryData(key, newState)
+    }
+
+    return [data, setData]
+}

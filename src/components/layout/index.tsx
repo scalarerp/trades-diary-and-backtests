@@ -6,8 +6,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <HeaderResponsive />
-            <ThemeSwitcher />
-            <div>{children}</div>
+            {children}
         </>
     )
 }

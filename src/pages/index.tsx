@@ -2,6 +2,7 @@ import Layout from 'components/layout'
 import React from 'react'
 import { Text, Container, Title, SimpleGrid, Box } from '@mantine/core'
 import { UserEditor, UserView } from 'components/userTest'
+import { useGlobalState } from 'store'
 
 const InitialPage = () => {
     return (
@@ -15,7 +16,7 @@ const InitialPage = () => {
                     <UserView />
                 </Title>
 
-                <Container size={660} p={100}>
+                <Container>
                     <Text color="dimmed">
                         k çlk çlk lçk lçk çlk çlk çlk çlk
                     </Text>
